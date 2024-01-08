@@ -8,10 +8,11 @@ const skinTones = new Map([
 ]);
 
 // Emoji presentation selector takes the same place as skin tone modifier https://unicode.org/reports/tr51/#composing_zwj_seq
-// So it should be removed if present, otherwise it causes issues with emojis with several traits
-// For example "female-detective" turns into a detective with gender symbol next to it, instead of showing a female detective with set skin tone '🕵🏼️‍♀️'
+// And are unneeded as "the emoji modifier automatically implies the emoji presentation style" https://unicode.org/reports/tr51/#Diversity
+// So it should be removed if present, otherwise it breaks the ZWJ seuqence and causes issues with emojis with several traits
+// For example woman detective emoji '🕵️‍♀️' turns into a detective with gender symbol next to it '🕵🏼️‍♀️', instead of showing a female detective with set skin tone '🕵🏻‍♀️' 
 const emojiPresentationSelector = '\u{FE0F}';
-// Skin tones aren't supported for family emojis
+// Skin tones aren't supported for family emojis on most platforms
 // Family emojis with 3+ person emojis this easily checked by the number of modifiable component emojis
 // For two person family emojis it's needed to check directly
 // To distinguish them from other two person emojis: couple, handshake, fencing, etc.
